@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.0.1",
+    "express": "^5.1.0",
+    "imap-simple": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mailparser": "^3.7.4",
+    "mongoose": "^8.16.1",
+    "multer": "^2.0.1",
+    "nodemailer": "^7.0.4",
+    "uuid": "^11.1.0"
+  }
+}

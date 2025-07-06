@@ -1,0 +1,142 @@
+I. Lý thuyết
+
+    1. Nêu đặc tính, ví dụ (tính bí mật, tính toàn vẹn, tính sẵn sàng, tính xác thực, tính chống chối bỏ)
+
+    2. Phân biệt diểm yếu và lỗ hổng bảo mật
+        - Diểm yếu: lỗi lý thuyết trong phần cứng, cài dặt, thiết kế, triển khai hoạt dộng
+        - Lỗ hổng: diểm yếu có thể bị khai thác dể tấn công
+
+    3. Phân biệt DOS, DDOS
+        - DOS: dung 1 máy tấn công, anh hwong bawng thong, nghen duong truyen
+        - DDOS: dung nhieu may tan cong -> mang thu 3
+
+    4. Cac buoc thuc hien tan cong (5 buoc)
+        - Xac dinh muc tieu
+        - Tring sat thong tin
+        - Cai cam, an nau
+        - Lưu trữ, phat trien
+        - Thuc hien tan cong
+
+    5. Dac diem cua cac mo hinh kiem soat truy nhap
+        - Chinh sach cap an ninh cho doi tuong
+        - Theo luong tin
+        - Theo phan quyen: Cap quyen, quan ly quyen (them, sua, xoa) cho cac chu the, doi tuong
+
+    6. Khái niệm nén mã hóa
+        - Nén: giảm thông tin dư thừa, không quan trọng, lặp lại
+        - Mã hóa: biến đổi thông tin thành dạng khác
+
+    7. Nguyên lí nén RLC (Running L Coding)
+        - Đếm số kĩ tự lặp lại(Kí tự), số màu lặp lại(ảnh)
+
+    8. Nguyên lý nén Hugman Coding
+        - Tính tần suất kí tự, giá trị điểm ảnh 
+        - Sắp xếp theo thứ tự tăng dần
+        - Tạo ra tổng 2 nút đầu, lặp lại đến khi hết kí tự/giá trị ảnh
+        - Nhánh trái gán mã 0, nhánh phải gán mã 1
+
+    9. Nguyên lí Shadong pano ????
+        - Tính xác suất để bên trái bằng bên phải
+
+    10. Cơ chế mã hóa bất đổi xứng
+        - Public key,....
+
+    11. Nêu cấu trúc cơ bản tường lửa
+        - ...
+        - Đặc trưng: Giao thức..., 
+        - Cổng nguồn, đích
+        - Điều kiện
+        - Cho ví dụ
+
+    12. Phân biệt HIDS, NIDS
+        - Vị trí: 
+            HIDS: đặt ở đầu cuối(host)
+            NIDS: đặt trên mạng
+        - Nguồn thu dữ liệu: 
+            HIDS: thu thông tin máy chủ: hoạt động hệ thống, nhật kí
+            NIDS: thu gói tin trên mạng
+
+    13. 2 cách phát hiện xâm nhập (IDS, IPS)
+        - Dựa trên cấu liệu
+        - Dựa trên bất thường:
+            Xây dựng profile bình thường, ngưỡng bất thường
+            Xây dựng tập luật cho dấu hiệu bất thường
+
+
+II. Bài tập
+
+    1. Cho chuỗi (VD: ptit@1234). Tính E?
+        E = log2(R ^ l) = l * log2(R)
+
+        l(length) = 9
+        R = R1(Chữ hoa) + R2(Chữ thường) + R3(Số) + R4(Kí tự)
+          = 0 + 3 + 4 + 1       (Thay @ bằng kí tự bất kì => R4 = 32)
+
+    
+    2. Mô hình BLP/BiBa
+        Si = { 3, 2, 2, 1 }
+        Oj = { 3, 1, 2, 1 }
+    Vẽ ma trận truy nhập
+        L3  S1-----O1------------
+        L2  S2 ----O3----------S3
+        L1  S1-----O2-----O4------
+
+    3. Mô hình Index Henry????
+          Ri + Rr + Lt + Lm + Lp + 1
+    I = ------------------------------
+          Rt + Rm + Rp + Li + Lr + 1
+          16   8    4    2    1         (Hệ số)
+
+    4. Tính Mel: Cho dải tần 300Hz -> 8000Hz. Tính 4 vector
+        - Đổi sang đơn vị Mel: M(f) = 1125 * ln(1 + f/700)
+        => 300Hz = 401.25 (Mel1)
+           8000Hz = 2835 (Mel2)
+        - Số khoản = Số vector + 1 = n
+                    Mel2 - Mel1
+        - delta = --------------- = 221
+                        n
+        - m[i] = { 401, 401 + 221 = 622, 622 + 221 = 843,....., Mel2 }
+        - Chuyển về tần số: 
+            h[i] = 700 * [exp(m[i] / 1125 - 1)]
+            h[i] = { 300, 517, 782,...., 8000 }
+        - Tính vector:
+                            (FFT_size + 1) * h[i]
+            f[i] = floor[---------------------]
+                                    f_R
+
+                f_R = 2 * f_Max
+            => f[i] = { 9, 16, 25, 35, 47, 63 }
+
+            --9----16------25----------35--------------47---------------------63
+
+    5. Cho K = '123'
+           Counter = 3min 20s
+           Block = 5
+           IN/OUT = 1
+           Hash = Tổng % 256
+    Tính OTP 4 số?
+        - Đổi ra giây: C1 = 3 * 60 + 20 = 200
+                       C = C1/30 = 7    (Chuyển sang hệ 16)
+        - K = '123' = (31, 32, 33)      (Chuyển sang hệ 16)
+            => (31, 32, 33, 00, 00)     (Thêm cho đủ 5 byte)
+        - KQ1 = K XOR IN
+
+                31 32 33 00 00
+              = XOR
+                01 01 01 01 01
+            
+              = 30 33 32 01 01 + 00 00 00 00 07  (Nối với C)
+
+            => f(KQ1) = 158 % 256 = 9E  (Hệ 16)
+
+        - KQ2 = K XOR OUT
+              = 30 33 32 01 01
+              
+          KQ2 = KQ2 + KQ1       (Nối với KQ1)
+              = { 30, 33, 32, 01, 01, 9E }
+
+            => f(KQ2) = sum(Byte) % 256 = 309 % 256 = 53 = 35    (Hệ 16)
+
+        - f(KQ2) = { 00, 00, 00, 00, 35 }   (Hệ 16)
+            Lấy 4 byte cuối = 53
+            OTP = 53 % 10000 = 0053

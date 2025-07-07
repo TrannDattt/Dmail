@@ -1,0 +1,35 @@
+.mail-detail{
+    padding: 20px 70px;
+}
+
+.mail-detail-btn-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.mail-detail-btn-container button{
+    height: 40px;
+    width: 100px;
+}
+
+.mail-detail p{
+    margin: 10px;
+}
+
+.attached-files ul{
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    gap: 20px;
+}
+
+.attached-files ul li{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* .download-file.btn{
+    margin-top: 20px;
+} */
+

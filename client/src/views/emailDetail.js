@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+import './emailDetail.css'
+
 export default function EmailDetail() {
   const { id } = useParams();
   const [email, setEmail] = useState(null);
@@ -56,7 +58,10 @@ export default function EmailDetail() {
   if (!email) return <div>Đang tải...</div>;
 
   return (
-    <div>
+    <div className='mail-detail'>
+      <div className='mail-detail-btn-container'>
+        <button onClick={() => navigate(-1)}>← Quay lại</button>
+      </div>
       <h2>{email.subject}</h2>
       <p><strong>From:</strong> {email.from}</p>
       <p><strong>To:</strong> {email.to}</p>
@@ -64,7 +69,7 @@ export default function EmailDetail() {
       <hr />
       <p>{email.body}</p>
       {email.attachments?.length > 0 && (
-        <div>
+        <div className='attached-files'>
           <h4>File đính kèm:</h4>
           <ul>
           {email.attachments.map((att, i) => {
@@ -86,7 +91,7 @@ export default function EmailDetail() {
                     <img
                       src={fileUrl}
                       alt={att.filename}
-                      style={{ maxWidth: '300px', display: 'block', marginBottom: '10px' }}
+                      style={{ maxWidth: '150px', display: 'block' }}
                     />
                   </>
                 ) : isPDF ? (
@@ -101,7 +106,7 @@ export default function EmailDetail() {
                   </a>
                 )}
 
-                <button onClick={() => downloadFile(fileName, downloadFilename)}>
+                <button className='download-file-btn' onClick={() => downloadFile(fileName, downloadFilename)}>
                   ⬇ Tải xuống
                 </button>
               </li>
@@ -110,7 +115,6 @@ export default function EmailDetail() {
         </ul>
         </div>
       )}
-      <button onClick={() => navigate(-1)}>← Quay lại</button>
     </div>
   );
 }

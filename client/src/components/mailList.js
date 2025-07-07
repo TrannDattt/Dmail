@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+import './mailList.css'
+
 export default function EmailList({ folder }) {
   const [emails, setEmails] = useState([]);
   const navigate = useNavigate();
@@ -28,16 +30,16 @@ export default function EmailList({ folder }) {
   }, [folder]);
 
   return (
-    <div>
-      <h2>{folder.toUpperCase()}</h2>
+    <div className='mail-list'>
+      <h1>{folder.toUpperCase()}</h1>
       <ul>
         {emails.map(email => (
-          <li
+          <li className='mail-card'
             key={email._id}
-            style={{ cursor: 'pointer', marginBottom: '10px' }}
             onClick={() => navigate(`/email/${email._id}`)}
           >
-            <strong>{email.subject}</strong> — {folder === 'sent' ? email.to : email.from}
+            <strong>Subject:</strong> {email.subject} | 
+            <strong> From:</strong> {folder === 'sent' ? email.to : email.from}
             <br />
             <small>{new Date(email.date).toLocaleString()}</small>
           </li>

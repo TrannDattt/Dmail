@@ -1,0 +1,24 @@
+.mail-list{
+    width: 80%;
+}
+
+.mail-list h1{
+    padding-left: 50px;
+}
+
+.mail-list ul{
+    padding: 0;
+    list-style-type: none;
+}
+
+.mail-card{
+    cursor: pointer;
+    padding: 10px 20px 10px 70px;
+    border-bottom: 1px solid #ccc;
+}
+
+.mail-card:hover{
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}

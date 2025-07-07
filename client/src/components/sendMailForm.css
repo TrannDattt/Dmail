@@ -1,0 +1,73 @@
+.compose-form{
+    position: relative;
+    display: flex;
+    width: 700px;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 50px;
+}
+
+.compose-form input{
+    height: 40px;
+    width: 100%;
+    font-size: 16px;
+    padding: 0 10px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+.compose-form input.file-selector{
+    margin-top: 20px;
+    font-size: 14px;
+    border-bottom: 0;
+}
+
+.compose-form textarea{
+    height: 200px;
+    width: 100%;
+    padding: 12px 10px;
+    font-size: 16px;
+    resize: none;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+.compose-btn-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.compose-btn-container button{
+    height: 40px;
+    width: 150px;
+    border-radius: 5px;
+    cursor: pointer;
+    background: rgb(248, 82, 82);
+    color: white;
+    font-size: 16px;
+    border: 1px solid #ccc;
+}
+
+.compose-btn-container button:hover{
+    background: rgb(255, 140, 140);
+}
+
+.compose-btn-container button.active {
+  background-color: #ff6969;
+}
+
+.compose-close-btn{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    border: 0;
+    background: transparent;
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}

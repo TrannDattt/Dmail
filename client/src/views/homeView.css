@@ -1,0 +1,60 @@
+.home-view{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    /* padding: 20px 70px 20px 0; */
+}
+
+.side-bar{
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    border-right: 1px solid #ccc;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.sidebar-btn-container{
+    width: 200px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px
+}
+
+.sidebar-btn-container button{
+    height: 40px;
+    width: 150px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sidebar-btn-container button:hover{
+    background: rgb(219, 219, 219);
+}
+
+.sidebar-btn-container button.active {
+  background-color: #58a1ef;
+  color: white;
+  font-weight: bold;
+}
+
+.mail-composer{
+    position: absolute;
+    display: none;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%); 
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    z-index: 1;
+}
+
+.mail-composer.active{
+    display: block;
+}

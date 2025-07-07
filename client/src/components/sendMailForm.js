@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
 
+import './sendMailForm.css'
+
 export default function SendEmailForm({ onClose }) {
   const [to, setTo] = useState('');
   const [subject, setSubject] = useState('');
@@ -35,14 +37,16 @@ export default function SendEmailForm({ onClose }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>✉️ Soạn thư</h3>
+    <form className='compose-form' onSubmit={handleSubmit}>
+      <h1>Soạn thư</h1>
       <input type="email" placeholder="To" value={to} onChange={e => setTo(e.target.value)} required />
       <input type="text" placeholder="Subject" value={subject} onChange={e => setSubject(e.target.value)} required />
       <textarea placeholder="Body" value={body} onChange={e => setBody(e.target.value)} required />
-      <input type="file" multiple onChange={e => setFiles(Array.from(e.target.files))} />
-      <button type="submit">Gửi</button>
-      {onClose && <button type="button" onClick={onClose}>Đóng</button>}
+      <input className='file-selector' type="file" multiple onChange={e => setFiles(Array.from(e.target.files))} />
+      <div className='compose-btn-container'>
+        <button type="submit">Gửi</button>
+      </div>
+      {onClose && <button className='compose-close-btn' type="button" onClick={onClose}>X</button>}
     </form>
   );
 }

@@ -65,7 +65,7 @@ export default function Header({ onLogout, onSearch }) {
           <button onClick={onLogout}>Đăng xuất</button>
         ) : (
           <>
-            <Link to="/login">Đăng nhập</Link>
+            <Link to="/login">Đăng nhập</Link> |
             <Link to="/register">Đăng ký</Link>
           </>
         )}

@@ -138,4 +138,41 @@ router.get('/download/:filename', auth, (req, res) => {
   }
 });
 
+router.post('/search', auth, async (req, res) => {
+  const { from, subject, body, date } = req.body;
+  const email = req.user.email;
+
+  const filter = {
+    to: email
+  };
+
+  if (from) {
+    filter.from = { $regex: from, $options: 'i' };
+  }
+
+  if (subject) {
+    filter.subject = { $regex: subject, $options: 'i' };
+  }
+
+  if (body) {
+    filter.body = { $regex: body, $options: 'i' };
+  }
+
+  if (date) {
+    const targetDate = new Date(date);
+    const nextDate = new Date(targetDate);
+    nextDate.setDate(targetDate.getDate() + 1);
+
+    filter.date = { $gte: targetDate, $lt: nextDate };
+  }
+
+  try {
+    const emails = await Email.find(filter).sort({ date: -1 });
+    res.json(emails);
+  } catch (err) {
+    console.error('Lỗi tìm kiếm email:', err);
+    res.status(500).json({ error: 'Lỗi máy chủ' });
+  }
+});
+
 module.exports = router;

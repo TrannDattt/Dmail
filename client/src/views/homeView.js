@@ -4,7 +4,7 @@ import SendEmailForm from '../components/sendMailForm';
 
 import './homeView.css'
 
-export default function HomeView() {
+export default function HomeView({ filters }) {
   const [folder, setFolder] = useState('inbox');
   const [composeVisible, setComposeVisible] = useState(false);
   const composerRef = useRef(null);
@@ -62,7 +62,7 @@ export default function HomeView() {
         </div>
       )}
 
-      <EmailList folder={folder} />
+      <EmailList folder={folder} filters={filters} />
     </div>
   );
 }

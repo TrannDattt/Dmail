@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import LoginPage from './views/loginView';
 import RegisterPage from './views/registerView';
 import HomePage from './views/homeView';
@@ -12,26 +13,42 @@ function PrivateRoute({ children }) {
   return isLoggedIn() ? children : <Navigate to="/login" />;
 }
 
-export default function App() {
+function AppContent(){
+  const [filters, setFilters] = useState(null);
+  const navigate = useNavigate();
+
   const handleLogout = () => {
     logout();;
-    window.location.href = '/login';
+    navigate('/login');
+  };
+
+  const handleSearch = (searchFilters) => {
+    setFilters(searchFilters);
+    navigate('/inbox');
   };
 
   return (
-    <Router>
-      <Header onLogout={handleLogout} />
+    <>
+      <Header onLogout={handleLogout} onSearch={handleSearch} />
 
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/inbox/" element={<PrivateRoute><HomePage /></PrivateRoute>} />
+        <Route path="/inbox/" element={<PrivateRoute><HomePage filters={filters} /></PrivateRoute>} />
         <Route path="/email/:id" element={<EmailDetail />} />
         <Route path="*" element={
             isLoggedIn() ? <Navigate to="/inbox" /> : <Navigate to="/login" />
           } 
         />
       </Routes>
+    </>
+  )
+}
+
+export default function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }

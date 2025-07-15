@@ -35,3 +35,18 @@
 .login-register-form button:hover{
     background: rgb(212, 212, 211);
 }
+
+.laoid-login-btn {
+  background-color: #2d7af3;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.laoid-login-btn:hover {
+  background-color: #1b5fc7;
+}

@@ -6,6 +6,7 @@ import HomePage from './views/homeView';
 import EmailDetail from './views/emailDetail';
 import { isLoggedIn, logout } from './auth';
 import Header from './components/header';
+import LaoidCallback from './views/laoIdCallback';
 
 import './App.css';
 
@@ -36,6 +37,7 @@ function AppContent(){
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/inbox/" element={<PrivateRoute><HomePage filters={filters} /></PrivateRoute>} />
         <Route path="/email/:id" element={<EmailDetail />} />
+        <Route path="/laoid/auth/callback" element={<LaoidCallback />} />
         <Route path="*" element={
             isLoggedIn() ? <Navigate to="/inbox" /> : <Navigate to="/login" />
           } 

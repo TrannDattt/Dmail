@@ -1,15 +1,21 @@
 const express = require('express');
+const cors = require('cors');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
 
 dotenv.config();
+const app = express();
+
+app.use(cors({
+  origin: 'http://localhost',
+//   credentials: true
+}));
 
 const authRoutes = require('./api/auth_api');
 const emailRoutes = require('./api/mail_api');
 
-const app = express();
 app.use(bodyParser.json());
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

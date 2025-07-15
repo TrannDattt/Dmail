@@ -4,12 +4,13 @@ import axios from 'axios';
 
 import './emailDetail.css'
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 export default function EmailDetail() {
   const { id } = useParams();
   const [email, setEmail] = useState(null);
   const navigate = useNavigate();
 
-  const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     // console.log('ENV:', process.env);

@@ -51,7 +51,7 @@ export default function LoginForm() {
       <h1>Đăng nhập</h1>
       <input 
         name="email" 
-        placeholder="Email" 
+        placeholder="User@mail.local" 
         onChange={e => setForm({ ...form, email: e.target.value })} 
       />
       <input 

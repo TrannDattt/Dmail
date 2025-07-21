@@ -1,0 +1,20 @@
+Jul 18 16:07:10 mail postfix/master[387]: daemon started -- version 3.5.25, configuration /etc/postfix
+Jul 18 16:07:10 mail postfix/pickup[393]: warning: /etc/postfix/dynamicmaps.cf: file is owned or writable by non-root users -- skipping this file
+Jul 18 16:07:10 mail postfix/qmgr[394]: warning: /etc/postfix/dynamicmaps.cf: file is owned or writable by non-root users -- skipping this file
+Jul 18 16:07:10 mail postfix/postlogd[395]: warning: /etc/postfix/dynamicmaps.cf: file is owned or writable by non-root users -- skipping this file
+Jul 18 16:10:43 mail postfix/master[380]: daemon started -- version 3.5.25, configuration /etc/postfix
+Jul 18 16:10:43 mail postfix/pickup[386]: warning: /etc/postfix/dynamicmaps.cf: file is owned or writable by non-root users -- skipping this file
+Jul 18 16:10:43 mail postfix/qmgr[387]: warning: /etc/postfix/dynamicmaps.cf: file is owned or writable by non-root users -- skipping this file
+Jul 18 16:10:43 mail postfix/postlogd[388]: warning: /etc/postfix/dynamicmaps.cf: file is owned or writable by non-root users -- skipping this file
+Jul 18 16:11:13 mail postfix/master[387]: daemon started -- version 3.5.25, configuration /etc/postfix
+Jul 18 16:11:13 mail postfix/qmgr[394]: warning: /etc/postfix/dynamicmaps.cf: file is owned or writable by non-root users -- skipping this file
+Jul 18 16:11:13 mail postfix/pickup[393]: warning: /etc/postfix/dynamicmaps.cf: file is owned or writable by non-root users -- skipping this file
+Jul 18 16:11:13 mail postfix/postlogd[395]: warning: /etc/postfix/dynamicmaps.cf: file is owned or writable by non-root users -- skipping this file
+Jul 18 16:14:44 mail postfix/master[386]: daemon started -- version 3.5.25, configuration /etc/postfix
+Jul 18 16:14:44 mail postfix/pickup[392]: warning: /etc/postfix/dynamicmaps.cf: file is owned or writable by non-root users -- skipping this file
+Jul 18 16:14:44 mail postfix/qmgr[393]: warning: /etc/postfix/dynamicmaps.cf: file is owned or writable by non-root users -- skipping this file
+Jul 18 16:14:44 mail postfix/postlogd[394]: warning: /etc/postfix/dynamicmaps.cf: file is owned or writable by non-root users -- skipping this file
+Jul 18 16:15:13 mail postfix/master[386]: daemon started -- version 3.5.25, configuration /etc/postfix
+Jul 18 16:15:13 mail postfix/qmgr[393]: warning: /etc/postfix/dynamicmaps.cf: file is owned or writable by non-root users -- skipping this file
+Jul 18 16:15:13 mail postfix/pickup[392]: warning: /etc/postfix/dynamicmaps.cf: file is owned or writable by non-root users -- skipping this file
+Jul 18 16:15:13 mail postfix/postlogd[394]: warning: /etc/postfix/dynamicmaps.cf: file is owned or writable by non-root users -- skipping this file

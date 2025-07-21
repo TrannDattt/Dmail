@@ -1,0 +1,20 @@
+From: You <ttdat171203@mail.local>
+To: dattt@mail.local
+Subject: test 11
+Message-ID: <96e960bd-3dad-fe4d-2a2c-6a2495cec7e7@mail.local>
+Date: Sat, 19 Jul 2025 16:06:32 +0000
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--_NmP-986b892cb27a228b-Part_1"
+
+----_NmP-986b892cb27a228b-Part_1
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+test1
+----_NmP-986b892cb27a228b-Part_1
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<p>test1</p>
+----_NmP-986b892cb27a228b-Part_1--

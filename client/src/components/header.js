@@ -1,16 +1,12 @@
 import { Link } from 'react-router-dom';
 import { isLoggedIn } from '../auth';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-import PersonalInfo from './personalInfo'
+import PersonalInfo from './personalInfo';
 
-import './header.css'
-
-const API_URL = process.env.REACT_APP_API_URL;
+import './header.css';
 
 export default function Header({ onLogout, onSearch }) {
   const [loggedIn, setLoggedIn] = useState(isLoggedIn());
-  const [user, setUser] = useState(null);
   const [showFilter, setShowFilter] = useState(false);
   const [filters, setFilters] = useState({
     from: '',
@@ -18,7 +14,6 @@ export default function Header({ onLogout, onSearch }) {
     date: '',
     keyword: ''
   });
-
 
   const handleChange = (e) => {
     setFilters({ ...filters, [e.target.name]: e.target.value });
@@ -30,30 +25,13 @@ export default function Header({ onLogout, onSearch }) {
     setShowFilter(false);
   };
 
-  const getUser = async () => {
-    const token = localStorage.getItem('token');
-    try {
-      const res = await axios.get(`${API_URL}/api/me`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setUser(res.data.user);
-    } catch (error) {
-      console.error("Lỗi lấy thông tin user:", error);
-    }
-  }
-
   useEffect(() => {
     const interval = setInterval(() => {
       const logged = isLoggedIn();
       setLoggedIn(logged);
-      if (logged && !user) {
-        getUser();
-      }
     }, 500);
     return () => clearInterval(interval);
-  }, [user]);
+  }, []);
 
   return (
     <header className="header">
@@ -67,7 +45,7 @@ export default function Header({ onLogout, onSearch }) {
           value={filters.keyword}
           onChange={handleChange}
         />
-        <button type="button" onClick={() => setShowFilter(!showFilter)}>🔍 Filter</button>
+        <button type="button" onClick={() => setShowFilter(!showFilter)}>Filter</button>
         <button type="submit">Search</button>
       </form>
 
@@ -87,7 +65,7 @@ export default function Header({ onLogout, onSearch }) {
       <nav className="auth-buttons">
         {loggedIn ? (
           <>
-            <PersonalInfo user={user} />
+            <PersonalInfo />
             <button onClick={onLogout}>Đăng xuất</button>
           </>
         ) : (

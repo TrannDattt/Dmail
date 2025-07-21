@@ -15,11 +15,14 @@ export default function EmailList({ folder, filters }) {
     );
   };
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const fetchEmails = async () => {
+      setLoading(true);
+      setEmails([]);
       try {
         let res;
-
         if (!isDefaultFilter(filters)) {
           res = await axios.post('/api/emails/search', filters, {
             headers: {
@@ -33,7 +36,6 @@ export default function EmailList({ folder, filters }) {
             }
           });
         }
-
         setEmails(res.data);
       } catch (err) {
         console.error('Lỗi khi tải email:', err);
@@ -41,34 +43,38 @@ export default function EmailList({ folder, filters }) {
           localStorage.removeItem('token');
           window.location.href = '/login';
         }
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchEmails();
   }, [folder, filters]);
 
+  // console.log(emails);
+  
   return (
     <div className='mail-list'>
       <h1>{folder.toUpperCase()}</h1>
-      <ul>
-        {emails.length === 0 ? (
+      {loading ? (
+        <p>Đang tải email...</p>
+      ) : emails.length === 0 ? (
         <p>Không có email phù hợp.</p>
-        ) : (
-          <ul>
-            {emails.map(email => (
-              <li className='mail-card'
-                key={email._id}
-                onClick={() => navigate(`/email/${email._id}`)}
-              >
-                <strong>Subject:</strong> {email.subject} | 
-                <strong> From:</strong> {folder === 'sent' ? email.to : email.from}
-                <br />
-                <small>{new Date(email.date).toLocaleString()}</small>
-              </li>
-            ))}
-          </ul>
-        )}
-      </ul>
+      ) : (
+        <ul>
+          {emails.map(email => (
+            <li className='mail-card'
+              key={email.uid}
+              onClick={() => navigate(`/email/${folder}/${email.uid}`)}
+            >
+              <strong>Subject:</strong> {email.subject} | 
+              <strong> {folder === 'sent' ? 'To:' : 'From:'} </strong> {folder === 'sent' ? email.to : email.from}
+              <br />
+              <small>{new Date(email.date).toLocaleString()}</small>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

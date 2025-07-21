@@ -1,17 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './personalInfo.css';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-export default function PersonalInfo({ user }) {
+export default function PersonalInfo() {
+  const [user, setUser] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState({
-    username: user.username || '',
-    phone: user.phone || '',
-    dob: user.dob ? user.dob.slice(0, 10) : '',
-    country: user.country || ''
+    username: '',
+    phone: '',
+    dob: '',
+    country: ''
   });
 
   const handleChange = (e) => {
@@ -37,10 +38,41 @@ export default function PersonalInfo({ user }) {
     }
   };
 
+  const getUser = async () => {
+    const token = localStorage.getItem('token');
+    try {
+      const res = await axios.get(`${API_URL}/api/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      var curUser = res.data.user;
+      setUser(curUser);
+    } catch (error) {
+      console.error("Lỗi lấy thông tin user:", error);
+    }
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        username: user.username || '',
+        phone: user.phone || '',
+        dob: user.dob ? user.dob.slice(0, 10) : '',
+        country: user.country || ''
+      });
+    }
+  }, [user]);
+
   return (
     <div className="personal-info">
       <img
-        src={user.avatar || './logo192.png'}
+        src={user?.avatar || '/logo192.png'}
         alt="avatar"
         className="avatar"
         onClick={() => setShowPopup(!showPopup)}

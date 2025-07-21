@@ -19,7 +19,7 @@ function AppContent(){
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    logout();;
+    logout();
     navigate('/login');
   };
 
@@ -36,7 +36,8 @@ function AppContent(){
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/inbox/" element={<PrivateRoute><HomePage filters={filters} /></PrivateRoute>} />
-        <Route path="/email/:id" element={<EmailDetail />} />
+        <Route path="/email/:folder/:id" element={<EmailDetail />} />
+        {/* <Route path="/email/:id" element={<EmailDetail />} /> */}
         <Route path="/laoid/auth/callback" element={<LaoidCallback />} />
         <Route path="*" element={
             isLoggedIn() ? <Navigate to="/inbox" /> : <Navigate to="/login" />

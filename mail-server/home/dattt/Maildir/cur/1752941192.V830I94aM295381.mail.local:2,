@@ -1,0 +1,26 @@
+Return-Path: <ttdat171203@mail.local>
+X-Original-To: dattt@mail.local
+Delivered-To: dattt@mail.local
+Received: from [127.0.0.1] (dmail-server-1.dmail_dmail-net [172.19.0.3])
+	by mail.local (Postfix) with ESMTPSA id 3A8BFC9D18
+	for <dattt@mail.local>; Sat, 19 Jul 2025 16:06:32 +0000 (UTC)
+From: You <ttdat171203@mail.local>
+To: dattt@mail.local
+Subject: test 11
+Message-ID: <1df91f87-5033-42be-0d1c-5463968c3940@mail.local>
+Date: Sat, 19 Jul 2025 16:06:32 +0000
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--_NmP-2bd8d5cfc1068a86-Part_1"
+
+----_NmP-2bd8d5cfc1068a86-Part_1
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+test1
+----_NmP-2bd8d5cfc1068a86-Part_1
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<p>test1</p>
+----_NmP-2bd8d5cfc1068a86-Part_1--

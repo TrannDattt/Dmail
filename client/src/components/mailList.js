@@ -24,7 +24,7 @@ export default function EmailList({ folder, filters }) {
       try {
         let res;
         if (!isDefaultFilter(filters)) {
-          res = await axios.post('/api/emails/search', filters, {
+          res = await axios.post(`/api/emails/search/${folder}`, filters, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -52,10 +52,21 @@ export default function EmailList({ folder, filters }) {
   }, [folder, filters]);
 
   // console.log(emails);
+
+  const getFolderName = (folder) => {
+    switch (folder) {
+      case 'inbox':
+        return 'Hộp thư đến';
+      case 'sent':
+        return 'Thư đã gửi';
+      default:
+        return folder.charAt(0).toUpperCase() + folder.slice(1);
+    }
+  }
   
   return (
     <div className='mail-list'>
-      <h1>{folder.toUpperCase()}</h1>
+      <h1>{getFolderName(folder)}</h1>
       {loading ? (
         <p>Đang tải email...</p>
       ) : emails.length === 0 ? (
@@ -67,8 +78,8 @@ export default function EmailList({ folder, filters }) {
               key={email.uid}
               onClick={() => navigate(`/email/${folder}/${email.uid}`)}
             >
-              <strong>Subject:</strong> {email.subject} | 
-              <strong> {folder === 'sent' ? 'To:' : 'From:'} </strong> {folder === 'sent' ? email.to : email.from}
+              <strong>Chủ đề:</strong> {email.subject} | 
+              <strong> {folder === 'sent' ? 'Từ:' : 'Đến:'} </strong> {folder === 'sent' ? email.to : email.from}
               <br />
               <small>{new Date(email.date).toLocaleString()}</small>
             </li>

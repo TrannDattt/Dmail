@@ -45,19 +45,19 @@ export default function Header({ onLogout, onSearch }) {
           value={filters.keyword}
           onChange={handleChange}
         />
-        <button type="button" onClick={() => setShowFilter(!showFilter)}>Filter</button>
-        <button type="submit">Search</button>
+        <button type="button" onClick={() => setShowFilter(!showFilter)}>Lọc</button>
+        <button type="submit">Tìm</button>
       </form>
 
       {showFilter && (
         <div className="filter-box">
-          <label>From:</label>
+          <label>Từ:</label>
           <input type="text" name="from" value={filters.from} onChange={handleChange} />
 
-          <label>Subject:</label>
+          <label>Chủ đề:</label>
           <input type="text" name="subject" value={filters.subject} onChange={handleChange} />
 
-          <label>Date:</label>
+          <label>Ngày:</label>
           <input type="date" name="date" value={filters.date} onChange={handleChange} />
         </div>
       )}

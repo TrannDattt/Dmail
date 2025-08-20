@@ -18,12 +18,7 @@ function isValidEmail(email) {
   return emailRegex.test(email);
 }
 
-function userExists(username) {
-  const result = spawnSync('id', ['-u', username]);
-  return result.status === 0;
-}
-
-async function createLinuxUser(username, password, ip) {
+async function createLinuxUser(username, password) {
   try {
     await axios.post(`${MAIL_SERVER_URL}/internal/create-user`, {
       username,
@@ -67,7 +62,7 @@ router.post('/register', async (req, res) => {
     const username = email.split('@')[0];
 
     // 👉 1. Tạo user hệ thống (Linux)
-    createLinuxUser(username, password, ip);
+    createLinuxUser(username, password);
 
     // 👉 2. Tạo user trong MongoDB
     await User.create({ 
@@ -134,10 +129,7 @@ router.get('/all-users', async (req, res) => {
     for (const user of users) {
       const username = user.email.split('@')[0];
       const password = decrypt(user.imapPass);
-      if (!userExists(username)) {
-        console.log(`Tạo user hệ thống: ${username}`);
-        createLinuxUser(username, password);
-      }
+      createLinuxUser(username, password);
     }
 
     res.json({ success: true, message: 'Lấy danh sách người dùng thành công'});
@@ -261,13 +253,10 @@ router.post('/laoid/exchange-code', async (req, res) => {
     const defaultPassword = uuidv4();
     const hashed = await bcrypt.hash(defaultPassword, 10);
     const encrypted = encrypt(defaultPassword);
-
-    if (!userExists(username)) {
-      // console.log(`Tạo user hệ thống: ${username}`);
-      createLinuxUser(username, defaultPassword, ip);
-    }
-     
+    
     if(!user) {
+      createLinuxUser(username, defaultPassword);
+
       user = await User.create({
         email: localEmail,
         password: hashed,

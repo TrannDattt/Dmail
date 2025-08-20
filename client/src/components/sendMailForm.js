@@ -39,9 +39,9 @@ export default function SendEmailForm({ onClose }) {
   return (
     <form className='compose-form' onSubmit={handleSubmit}>
       <h1>Soạn thư</h1>
-      <input type="email" placeholder="To" value={to} onChange={e => setTo(e.target.value)} required />
-      <input type="text" placeholder="Subject" value={subject} onChange={e => setSubject(e.target.value)} required />
-      <textarea placeholder="Body" value={body} onChange={e => setBody(e.target.value)} required />
+      <input type="email" placeholder="Email nhận" value={to} onChange={e => setTo(e.target.value)} required />
+      <input type="text" placeholder="Chủ đề" value={subject} onChange={e => setSubject(e.target.value)} required />
+      <textarea placeholder="Nội dung" value={body} onChange={e => setBody(e.target.value)} required />
       <input className='file-selector' type="file" multiple onChange={e => setFiles(Array.from(e.target.files))} />
       <div className='compose-btn-container'>
         <button type="submit">Gửi</button>

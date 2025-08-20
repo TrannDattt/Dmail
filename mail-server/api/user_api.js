@@ -19,6 +19,7 @@ router.post('/internal/create-user', (req, res) => {
     spawnSync('chpasswd', [], {
       input: `${username}:${password}`,
     });
+    console.log(`Creating Linux user: ${username} with password: ${password}`);
 
     // 3. Tạo thư mục Maildir
     const base = `/home/${username}/Maildir`;

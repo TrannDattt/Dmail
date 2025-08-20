@@ -11,6 +11,15 @@
 # production
 /build
 
+# mail-server
+/mail-server/dovecot
+/mail-server/postfix
+/mail-server/etc
+/mail-server/home
+/mail-server/logs
+/mail-server/mail-logs
+/mail-server/maillogs
+
 # misc
 .DS_Store
 .env.local

@@ -82,10 +82,10 @@ export default function PersonalInfo() {
         <div className="popup">
           {editMode ? (
             <>
-              <label>Username:</label>
+              <label>Tên người dùng:</label>
               <input name="username" value={formData.username} onChange={handleChange} />
 
-              <label>Phone:</label>
+              <label>Số điện thoại:</label>
               <input name="phone" value={formData.phone} onChange={handleChange} />
 
               <label>Ngày sinh:</label>
@@ -101,9 +101,9 @@ export default function PersonalInfo() {
             </>
           ) : (
             <>
-              <p><strong>Username:</strong> {formData.username}</p>
+              <p><strong>Tên người dùng:</strong> {formData.username}</p>
               <p><strong>Email:</strong> {user.email}</p>
-              <p><strong>Phone:</strong> {formData.phone}</p>
+              <p><strong>Số điện thoại:</strong> {formData.phone}</p>
               <p><strong>Ngày sinh:</strong> {formData.dob}</p>
               <p><strong>Quốc gia:</strong> {formData.country}</p>
               <button onClick={() => setEditMode(true)}>Chỉnh sửa</button>

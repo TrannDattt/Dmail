@@ -18,7 +18,7 @@ export default function HomeView({ filters }) {
   return (
     <div className='home-view'>
       <div className='side-bar'>
-        <h1>📬 Hộp thư</h1>
+        <h1>Hòm thư</h1>
         <div className='sidebar-btn-container' style={{
           
         }}>
@@ -28,7 +28,7 @@ export default function HomeView({ filters }) {
             }}
             className={composeVisible ? 'active' : ''}
           >
-            ✉️ Soạn thư
+            Soạn thư
           </button>
 
           <button
@@ -38,7 +38,7 @@ export default function HomeView({ filters }) {
             }}
             className={folder === 'inbox' && !composeVisible ? 'active' : ''}
           >
-            📥 Inbox
+            Hộp thư đến
           </button>
 
           <button
@@ -48,7 +48,7 @@ export default function HomeView({ filters }) {
             }}
             className={folder === 'sent' && !composeVisible ? 'active' : ''}
           >
-            📤 Sent
+            Thư đã gửi
           </button>
         </div>
       </div>

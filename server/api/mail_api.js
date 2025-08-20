@@ -11,7 +11,9 @@ const { getImapClient } = require('../utils/imapClientFactory');
 const axios = require('axios');
 const fs = require('fs');
 const { Readable } = require('stream');
+const User = require('../models/user');
 const logger = require('../utils/logging');
+const { console } = require('inspector');
 
 const MAIL_SERVER_URL = process.env.MAIL_SERVER_URL;
 
@@ -58,6 +60,12 @@ router.post('/send', auth, upload.array('attachments'), async (req, res) => {
   const { ip } = req.clientInfo;
   const from = req.user.email;
   const username = from.split('@')[0];
+
+  let user = await User.findOne({email: to });
+  if (!user) {
+    logger.logError('Send email', new Error('Recipient does not exist'), ip);
+    return res.status(400).json({ error: 'Người nhận không tồn tại' });
+  }
 
   const rawFiles = Array.isArray(req.files) ? req.files : [];
 
@@ -313,8 +321,9 @@ router.get('/preview/:folder/:uid/:filename', auth, async (req, res) => {
   }
 });
 
-router.post('/search', auth, async (req, res) => {
-  const { from, subject, body, date, folder = 'INBOX' } = req.body;
+router.post('/search/:folder', auth, async (req, res) => {
+  const { from, subject, body, date } = req.body;
+  const { folder } = req.params;
   const normalizedFolder = normalizeFolder(folder);
   const email = req.user.email;
 
@@ -340,6 +349,9 @@ router.post('/search', auth, async (req, res) => {
         (!subject || (parsed.subject || '').toLowerCase().includes(subject.toLowerCase())) &&
         (!body || (parsed.text || '').toLowerCase().includes(body.toLowerCase())) &&
         (!date || isSameDay(new Date(parsed.date), new Date(date)));
+
+      console.log(new Date(parsed.date))
+      console.log(new Date(date))
 
       if (matches) {
         emails.push({
